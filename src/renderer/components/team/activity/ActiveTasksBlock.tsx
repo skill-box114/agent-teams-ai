@@ -25,7 +25,7 @@ export const ActiveTasksBlock = ({
   return (
     <div className="mb-3 space-y-1.5">
       <p className="text-[10px] font-medium uppercase tracking-wide text-[var(--color-text-muted)]">
-        Сейчас в работе
+        In progress
       </p>
       {working.map((member) => {
         const taskId = member.currentTaskId!;
@@ -88,7 +88,7 @@ export const ActiveTasksBlock = ({
                 className="min-w-0 flex-1 truncate text-[10px]"
                 style={{ color: CARD_ICON_MUTED }}
               >
-                выполняет
+                working on
               </span>
               {task &&
                 (onTaskClick ? (
