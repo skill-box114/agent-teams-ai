@@ -8,13 +8,20 @@ declare module 'agent-teams-controller' {
     createTask(flags: Record<string, unknown>): unknown;
     getTask(taskId: string): unknown;
     listTasks(): unknown[];
+    listDeletedTasks(): unknown[];
+    resolveTaskId(taskRef: string): string;
     setTaskStatus(taskId: string, status: string, actor?: string): unknown;
     startTask(taskId: string, actor?: string): unknown;
     completeTask(taskId: string, actor?: string): unknown;
+    softDeleteTask(taskId: string, actor?: string): unknown;
+    restoreTask(taskId: string, actor?: string): unknown;
     setTaskOwner(taskId: string, owner: string | null): unknown;
+    updateTaskFields(taskId: string, fields: { subject?: string; description?: string }): unknown;
     addTaskComment(taskId: string, flags: Record<string, unknown>): unknown;
     attachTaskFile(taskId: string, flags: Record<string, unknown>): unknown;
     attachCommentFile(taskId: string, commentId: string, flags: Record<string, unknown>): unknown;
+    addTaskAttachmentMeta(taskId: string, meta: Record<string, unknown>): unknown;
+    removeTaskAttachment(taskId: string, attachmentId: string): unknown;
     setNeedsClarification(taskId: string, value: string | null): unknown;
     linkTask(taskId: string, targetId: string, linkType: string): unknown;
     unlinkTask(taskId: string, targetId: string, linkType: string): unknown;
@@ -28,6 +35,7 @@ declare module 'agent-teams-controller' {
     listReviewers(): string[];
     addReviewer(reviewer: string): string[];
     removeReviewer(reviewer: string): string[];
+    updateColumnOrder(columnId: string, orderedTaskIds: string[]): unknown;
   }
 
   export interface ControllerReviewApi {
@@ -41,6 +49,7 @@ declare module 'agent-teams-controller' {
 
   export interface ControllerProcessApi {
     registerProcess(flags: Record<string, unknown>): unknown;
+    stopProcess(flags: Record<string, unknown>): unknown;
     unregisterProcess(flags: Record<string, unknown>): unknown;
     listProcesses(): unknown[];
   }
